@@ -32,7 +32,7 @@ jobs:
 
       - name: Build project
         run: npm run build # <<< This will execute 'tsc && vite build' (from package.json)
-        env:
+        #env:
           # If you have specific env vars for build that are NOT committed to .env
           # For example, if you set REACT_APP_API_KEY in your CI/CD secrets:
           # REACT_APP_SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }} 
