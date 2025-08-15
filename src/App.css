@@ -1,0 +1,113 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+.app-container {
+  display: grid;
+  grid-template-areas: "stack"; /* All children will live in this one area */
+
+  height: 100vh;
+  width: 100vw;
+
+  background-color: #e6d9b2; 
+  overflow: hidden;
+}
+
+/* Make both the canvas and the UI layer fill the same grid cell */
+.canvas-container,
+.ui-layer {
+  grid-area: stack; /* This is the magic that stacks them */
+
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-container{
+  z-index: 0; /* send this layer to back of the stack */
+}
+
+/* --- UI Layer Styling --- */
+.ui-layer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes headline to top, credits to bottom */
+  align-items: center;
+  color: #8c4b3f; /* A default text color for the UI */
+
+  z-index: 0;
+  pointer-events: none; /* Allows mouse clicks to go "through" the UI to the canvas */
+}
+
+.headline-round {
+  max-width: 80vw;
+  margin:0 20vw 0 20vw;
+
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Bungee', sans-serif;
+  font-weight: 900;
+  font-size: 7vw;
+
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #8c4b3f;
+}
+.headline-slab {
+  /* This is our solid slab-serif alternative */
+  font-family: 'Rokkitt', serif;
+  font-weight: 700;
+  font-size: 4.5rem;
+  color: #3a4e48; /* A deep, forest green */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 50px;
+}
+
+.credits {
+  /* Use flexbox to easily manage and center the credit items */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em; /* Adds a nice space between items */
+  margin:.6rem;
+
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+
+  cursor: default;
+  pointer-events: auto; /* Make the credits clickable again */
+}
+.credits .text {
+  color: #cc6f5f;
+  font-size: .7rem;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+
+  pointer-events: auto; /* Make the credits clickable again */
+}
+.credits .text:hover {
+  color: #ffffff;
+  transform: translateY(-2px); /* Add a subtle lift effect on hover */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg); /* Start at 0 degrees rotation */
+  }
+  to {
+    transform: rotate(360deg); /* End at a full 360 degrees rotation */
+  }
+}
+.credits .divider {
+  font-size: 0.7em;
+  color: #bdbdbd;
+  margin: 0 0.5em;
+
+  transform: rotate(0deg);
+  transition: transform 0.4s ease-out; /* This handles the smooth return */
+  
+  display: inline-block;
+  pointer-events: auto;
+}
+
+.credits .divider:hover {
+    animation: spin 1s linear infinite;
+}

@@ -1,0 +1,32 @@
+# .github/workflows/your-workflow-file.yml
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or 'master', or whatever your main branch is
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # <<< UPDATE THIS TO v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # <<< UPDATE THIS TO v4 (if present)
+        with:
+          node-version: '20' # Or your desired Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build # This creates your 'dist' folder
+
+      - name: Upload artifact to GitHub Pages
+        uses: actions/upload-pages-artifact@v3 # <<< UPDATE THIS TO v3 (It internally uses upload-artifact@v4)
+        with:
+          path: './dist' # Ensure this points to your build output folder
