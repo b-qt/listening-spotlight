@@ -1,32 +1,59 @@
-# .github/workflows/your-workflow-file.yml
-
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main # Or 'master', or whatever your main branch is
+      - main # Trigger on pushes to your main branch (or master)
+
+  # This allows you to manually run the workflow from the GitHub Actions UI
+  workflow_dispatch:
+
+# Grant GITHUB_TOKEN the necessary permissions for Pages deployment
+permissions:
+  contents: read # To checkout the repo
+  pages: write   # To deploy to GitHub Pages
+  id-token: write # To authenticate with GitHub Pages
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4 # <<< UPDATE THIS TO v4
+      - name: Checkout your repository
+        uses: actions/checkout@v4 # Use the latest stable version
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4 # <<< UPDATE THIS TO v4 (if present)
+        uses: actions/setup-node@v4 # Use the latest stable version
         with:
-          node-version: '20' # Or your desired Node.js version
+          node-version: '20' # Or your desired Node.js version (LTS recommended)
+          cache: 'npm' # Speeds up subsequent installs
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
-        run: npm run build # This creates your 'dist' folder
+        run: npm run build # <<< This will execute 'tsc && vite build' (from package.json)
+        env:
+          # If you have specific env vars for build that are NOT committed to .env
+          # For example, if you set REACT_APP_API_KEY in your CI/CD secrets:
+          # REACT_APP_SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }} 
+          # REACT_APP_SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI }}
+          # For client_id/redirect_uri, using .env in the build is usually fine,
+          # as they're not highly sensitive in PKCE flow.
+          # Ensure your .env variables are correctly prefixed (VITE_ or REACT_APP_).
+          # For CRA, `REACT_APP_PUBLIC_URL` or `homepage` handles the base path.
 
-      - name: Upload artifact to GitHub Pages
-        uses: actions/upload-pages-artifact@v3 # <<< UPDATE THIS TO v3 (It internally uses upload-artifact@v4)
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3 # <<< Use this action. It uses upload-artifact@v4 internally.
         with:
-          path: './dist' # Ensure this points to your build output folder
+          path: './build' # This should match the output directory of 'npm run build' (CRA builds to 'build')
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build # This job depends on the 'build' job completing successfully
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # <<< The final deployment action
