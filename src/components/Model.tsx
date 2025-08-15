@@ -38,9 +38,11 @@ type GLTFResult = GLTF & {
 
 // A reusable material for the brass accents
 const brassMaterial = <meshStandardMaterial color="#b08d57" metalness={0.8} roughness={0.4} />;
+const modelPath = `${process.env.PUBLIC_URL}/Model.glb`;
+
 
 export function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes } = useGLTF('/Model.glb') as GLTFResult;
+  const { nodes } = useGLTF(modelPath) as GLTFResult;
 
   const [isPinDown, setIsPinDown] = useState(false);
   const [isDiskSpinning, setIsDiskSpinning] = useState(false);
@@ -171,4 +173,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/Model.glb');
+useGLTF.preload(modelPath);
