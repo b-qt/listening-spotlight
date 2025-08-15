@@ -2,7 +2,7 @@
   "name": "listening-spotlight",
   "version": "0.1.0",
   "private": false,
-   "homepage": "https://b-qt.github.io/ListeningSpotlight/", 
+   "homepage": "https://b-qt.github.io/listening-spotlight/", 
   "dependencies": {
     "@react-spring/three": "^10.0.1",
     "@react-three/drei": "^10.6.1",
