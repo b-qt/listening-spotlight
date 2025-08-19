@@ -189,7 +189,6 @@ lazy-object-proxy==1.9.0
 libclang==16.0.0
 limits==3.6.0
 linkify-it-py==2.0.2
-lit @ file:///private/tmp/lit-20231105-19100-lanhbu/lit-17.0.4
 llvmlite==0.40.1
 locationtagger==0.0.1
 lockfile==0.12.2
