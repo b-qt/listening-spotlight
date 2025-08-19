@@ -1,0 +1,8 @@
+# Data Analysis
+pandas~=1.5
+
+# API Calls
+requests~=2.28
+
+# Web App
+streamlit~=1.15
