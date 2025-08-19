@@ -16,6 +16,14 @@ def _():
     return SpotifyOAuth, datetime, os, spot
 
 
+app._unparsable_cell(
+    r"""
+    %pip freeze > requirements.txt
+    """,
+    name="_"
+)
+
+
 @app.cell
 def _(SpotifyOAuth, os, spot):
     scope = "user-read-recently-played user-library-read user-follow-read user-top-read"
