@@ -4,6 +4,7 @@ import { OrbitControls, Stage } from '@react-three/drei';
 
 // import { Model_Debug as Model } from './components/Model_Debug';
 import { Model } from './components/Model.tsx';
+import { SessionSummary } from './Data/SessionSummary.tsx';
 
 import './App.css'
 
@@ -65,6 +66,9 @@ function App() {
           <div className="divider">|</div>
           <div className="text">tool stack</div>
         </div>
+
+        <SessionSummary/>
+        
       </div>
 
     </div>
