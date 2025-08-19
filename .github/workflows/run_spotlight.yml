@@ -3,8 +3,10 @@ name: Run spotlight_getters and Save Data Folder
 
 # Define when the workflow should run
 on:
-  push:
-    branches: [ main ]  # Runs on pushes to the main branch
+  schedule:
+    - cron: '0 */3 * * *' # Every 3 hours
+  # push:
+  #   branches: [ main ]  # Runs on pushes to the main branch
   workflow_dispatch:      # Allows you to run it manually from the Actions tab
 
 # Define the jobs to run
