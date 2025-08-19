@@ -34,6 +34,7 @@ jsonschema==4.25.1
     # via altair
 jsonschema-specifications==2025.4.1
     # via jsonschema
+marimo
 markupsafe==3.0.2
     # via jinja2
 narwhals==2.1.2
