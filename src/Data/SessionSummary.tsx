@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react';
 
 interface Session {
     start_time:sting;
@@ -10,6 +11,10 @@ interface Session {
 }
 
 export function SessionSummary(){
+    const [sessions, setSessions] = useState<Session[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string| null>(null);
+
     
 }
 
