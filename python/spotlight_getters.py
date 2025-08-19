@@ -16,14 +16,6 @@ def _():
     return SpotifyOAuth, datetime, os, spot
 
 
-app._unparsable_cell(
-    r"""
-    %pip freeze > requirements.txt
-    """,
-    name="_"
-)
-
-
 @app.cell
 def _(SpotifyOAuth, os, spot):
     scope = "user-read-recently-played user-library-read user-follow-read user-top-read"
@@ -71,7 +63,7 @@ def _(SpotifyOAuth, save_to_json, sp):
         return artist_names
 
     followed_artists = get_followed_artists()
-    save_to_json(followed_artists, './listening-spotlight/python/data/followed_artists.json')
+    save_to_json(followed_artists, './data/followed_artists.json')
     return
 
 
@@ -85,7 +77,7 @@ def _(SpotifyOAuth, save_to_json, sp):
         return top_artist_names
 
     top_artists = get_top_artists()
-    save_to_json(top_artists, './listening-spotlight/python/data/top_artists.json')
+    save_to_json(top_artists, './data/top_artists.json')
     return
 
 
@@ -99,7 +91,7 @@ def _(SpotifyOAuth, save_to_json, sp):
         return top_artist_names
 
     top_tracks = get_top_tracks()
-    save_to_json(top_tracks, './listening-spotlight/python/data/top_tracks.json')
+    save_to_json(top_tracks, './data/top_tracks.json')
     return
 
 
@@ -219,7 +211,7 @@ def _(SpotifyOAuth, datetime, save_to_json, sp):
 
     listening_sessions = get_listening_sessions()
 
-    listening_sessions,save_to_json(listening_sessions, './listening-spotlight/python/data/listening_sessions.json')
+    listening_sessions,save_to_json(listening_sessions, './data/listening_sessions.json')
     return
 
 

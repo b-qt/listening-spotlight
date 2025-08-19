@@ -15,7 +15,15 @@ export function SessionSummary(){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string| null>(null);
 
-    
+    useEffect(()=>{
+        const fetchSessions = async () => {
+            try {
+                
+            } catch (error) {
+                
+            }finally{}
+        }
+    });
 }
 
 export default SessionSummary
