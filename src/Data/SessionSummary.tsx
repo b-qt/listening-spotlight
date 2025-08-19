@@ -1,13 +1,16 @@
-function SessionSummary(){
-    /* Function gets summary of the session
-        input: session information
-        output: disctionary object of ...
-                - top artists
-                - average session duration
-                - average number of songs per session
-                - number of repeated songs
-                - timeline of sessions
-     */
+
+interface Session {
+    start_time:sting;
+    end_time: string;
+    session_duration: number;
+    total_playtime_minutes: number;
+    unique_artists:string[];
+    track_count: number;
+    tracks: string[]
+}
+
+export function SessionSummary(){
+    
 }
 
 export default SessionSummary
