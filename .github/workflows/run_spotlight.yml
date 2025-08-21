@@ -39,7 +39,7 @@ jobs:
       # Step 4: Run the python script
       - name: Run the python script
         working-directory: ./python
-        run: python spotlight_data_fetcher.py # Assuming you are using the rewritten script name
+        run: python spotlight_getters.py # Assuming you are using the rewritten script name
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
