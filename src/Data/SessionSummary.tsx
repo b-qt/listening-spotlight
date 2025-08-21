@@ -18,7 +18,7 @@ export function SessionSummary() {
     useEffect(() => {
         const fetchSessions = async () => {
             try {
-                const response = await fetch('../../python/data/listening_sessions.json');
+                const response = await fetch('/data/listening_sessions.json');
 
                 if (!response.ok) {
                     throw new Error(`Error fetching .. ${response.status}`);
