@@ -49,7 +49,8 @@ export function SessionSummary() {
         return <div>No Spotify sessions found. Run the Python script or listen to music!</div>;
     }
 
-    return [sessions];
+    // return [sessions];
+    return ;
 
 }
 
