@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/listening-spotlight/static/css/main.e4df3545.css",
+    "main.js": "/listening-spotlight/static/js/main.b026c175.js",
+    "index.html": "/listening-spotlight/index.html",
+    "main.e4df3545.css.map": "/listening-spotlight/static/css/main.e4df3545.css.map",
+    "main.b026c175.js.map": "/listening-spotlight/static/js/main.b026c175.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4df3545.css",
+    "static/js/main.b026c175.js"
+  ]
+}
