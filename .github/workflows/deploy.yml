@@ -1,11 +1,16 @@
 name: Deploy to GitHub Pages
 
+# Define when the workflow should run
 on:
+  # Trigger 1: On a schedule (every 3 hours)
+  schedule:
+    - cron: '0 */3 * * *'
+  
+  # Trigger 2: On pushes to the main branch
   push:
-    branches:
-      - main # Trigger on pushes to your main branch (or master)
-
-  # This allows you to manually run the workflow from the GitHub Actions UI
+    branches: [ main ]
+  
+  # Trigger 3: Manually from the Actions tab
   workflow_dispatch:
 
 # Grant GITHUB_TOKEN the necessary permissions for Pages deployment
