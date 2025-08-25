@@ -10,6 +10,7 @@ interface Session {
     tracks: string[]
 }
 
+const sessionPath = `${process.env.PUBLIC_URL}/data/listening_sessions.json`;
 export function SessionSummary() {
     const [sessions, setSessions] = useState<Session[]>([]);
     const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ export function SessionSummary() {
     useEffect(() => {
         const fetchSessions = async () => {
             try {
-                const response = await fetch('/data/listening_sessions.json');
+                const response = await fetch(sessionPath);
 
                 if (!response.ok) {
                     throw new Error(`Error fetching .. ${response.status}`);
@@ -48,23 +49,7 @@ export function SessionSummary() {
         return <div>No Spotify sessions found. Run the Python script or listen to music!</div>;
     }
 
-    return (
-        <div style={{ padding: '15px', background: 'rgba(0,0,0,0.7)', borderRadius: '8px', color: 'white', fontSize: '0.9em', maxWidth: '300px' }}>
-            <h3 style={{ margin: '0 0 10px 0', fontSize: '1em' }}>Your Spotify Sessions:</h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, maxHeight: '200px', overflowY: 'auto' }}>
-                {sessions.map((session, index) => (
-                    <li key={index} style={{ marginBottom: '10px', borderBottom: '1px solid #444', paddingBottom: '5px' }}>
-                        <strong>Session {index + 1}:</strong><br />
-                        Start: {new Date(session.session_start_utc).toLocaleString()}<br />
-                        Duration: {Math.round(session.session_duration_seconds / 60)} min<br />
-                        Tracks: {session.track_count}<br />
-                        Artists: {session.unique_artists.join(', ')}<br />
-                        {/* Tracks List: {session.tracks.join(', ')} */}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+    return [sessions];
 
 }
 

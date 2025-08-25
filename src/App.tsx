@@ -58,6 +58,7 @@ function App() {
       </div>
 
       {/* The UI layer sits on top of the canvas */}
+      <SessionSummary/>
       <div className="ui-layer">
         <h1 className="headline-round">My Listening History</h1>
 
@@ -67,7 +68,6 @@ function App() {
           <div className="text">tool stack</div>
         </div>
 
-        <SessionSummary/>
         
       </div>
 
